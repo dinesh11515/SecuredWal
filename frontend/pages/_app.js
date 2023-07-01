@@ -1,6 +1,10 @@
 import "@/styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
-import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import {
+  getDefaultWallets,
+  RainbowKitProvider,
+  darkTheme,
+} from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { fantomTestnet } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
@@ -23,7 +27,11 @@ const wagmiConfig = createConfig({
 export default function App({ Component, pageProps }) {
   return (
     <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider chains={chains}>
+      <RainbowKitProvider
+        chains={chains}
+        modalSize="compact"
+        theme={darkTheme()}
+      >
         <Component {...pageProps} />;
       </RainbowKitProvider>
     </WagmiConfig>
