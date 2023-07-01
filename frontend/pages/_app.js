@@ -1,5 +1,7 @@
 import "@/styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
+import Layout from "@/components/Layout";
+
 import {
   getDefaultWallets,
   RainbowKitProvider,
@@ -32,7 +34,9 @@ export default function App({ Component, pageProps }) {
         modalSize="compact"
         theme={darkTheme()}
       >
-        <Component {...pageProps} />;
+        <Layout>
+          <Component {...pageProps} />;
+        </Layout>
       </RainbowKitProvider>
     </WagmiConfig>
   );
