@@ -4,16 +4,41 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { PlusIcon, ArrowUpRightIcon } from "@heroicons/react/20/solid";
+import { Polybase } from "@polybase/client";
+
 export default function Home() {
   const router = useRouter();
+  const db = new Polybase({
+    defaultNamespace:
+      "pk/0xb5aa6ea50c67df66fc493ab2aef0d9fe423741fa7a4d1eee340e4bb806c2c1be2ae0ce9d519c07da481ad39fa22a96a0811c798db6fae6aa762889c208fee378/FanSig",
+  });
+  const collectionReference = db.collection("SmartWallet");
 
   const { address } = useAccount();
   const [data, setData] = useState([]);
   const [mounting, setMounting] = useState(false);
 
+  const getWallets = async () => {
+    try {
+      const records = await collectionReference
+        .where("identifier", "==", address + "")
+        .get();
+
+      setData(records.data);
+    } catch (err) {
+      console.log(err, "getWallets");
+    }
+  };
+
   useEffect(() => {
     setMounting(true);
   }, []);
+
+  useEffect(() => {
+    if (address) {
+      getWallets();
+    }
+  }, [address]);
 
   if (!mounting) {
     return null;
@@ -73,9 +98,7 @@ export default function Home() {
                         className="flex justify-between gap-2 mt-2 bg-gray-900 border border-gray-600 rounded-md px-3 py-2 text-sm tracking-wide focus:outline-none"
                       >
                         <div className="">
-                          <p className="capitalize text-white">
-                            {item.data.id}
-                          </p>
+                          <p className=" text-white">{item.data.id}</p>
                           <p className="text-gray-400">
                             {item.data.address.slice(0, 8)}....
                             {item.data.address.slice(-8)}
