@@ -37,6 +37,7 @@ export const Web3Auth = ({ addWeb3Wallet, setSigner }) => {
         setWeb3auth(web3auth);
 
         await web3auth.init();
+        console.log(web3auth.provider);
         if (web3auth.provider) {
           setProvider(web3auth.provider);
           const provider = new ethers.providers.Web3Provider(web3auth.provider);
@@ -53,7 +54,6 @@ export const Web3Auth = ({ addWeb3Wallet, setSigner }) => {
 
     init();
   }, []);
-
   const connect = async () => {
     try {
       const web3authProvider = await web3auth.connectTo("openlogin", {
@@ -72,6 +72,7 @@ export const Web3Auth = ({ addWeb3Wallet, setSigner }) => {
 
   const disconnect = async () => {
     try {
+      console.log("disconnect");
       await web3auth.logout();
       setProvider(null);
     } catch (error) {
