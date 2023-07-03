@@ -12,7 +12,7 @@ export default function Navbar() {
             router.push("/");
           }}
         >
-          FanSig
+          SecuredWal
         </button>
       </div>
       <ConnectButton />

@@ -24,7 +24,7 @@ export const Web3Auth = ({ addWeb3Wallet, setSigner }) => {
           adapterSettings: {
             uxMode: "popup",
             whiteLabel: {
-              name: "FanSig",
+              name: "SecuredWal",
               logoLight: "https://web3auth.io/images/w3a-L-Favicon-1.svg",
               logoDark: "https://web3auth.io/images/w3a-D-Favicon-1.svg",
               defaultLanguage: "en",
@@ -40,11 +40,11 @@ export const Web3Auth = ({ addWeb3Wallet, setSigner }) => {
         console.log(web3auth.provider);
         if (web3auth.provider) {
           setProvider(web3auth.provider);
-          const provider = new BrowserProvider(web3auth.provider);
-          const signer = await provider.getSigner();
+          const pro = new BrowserProvider(web3auth.provider);
+          const signer = await pro.getSigner();
           setSigner(signer);
           const address = await signer.getAddress();
-          addWeb3Wallet(address);
+          // addWeb3Wallet(address);
           console.log(address);
         }
       } catch (error) {
@@ -56,46 +56,36 @@ export const Web3Auth = ({ addWeb3Wallet, setSigner }) => {
   }, []);
   const connect = async () => {
     try {
-      const web3authProvider = await web3auth.connectTo("openlogin", {
-        loginProvider: "google",
-      });
-      setProvider(web3authProvider);
-      const provider = new BrowserProvider(web3authProvider);
-      const signer = provider.getSigner();
-      setSigner(signer);
-      const address = await signer.getAddress();
-      addWeb3Wallet(address);
+      if (provider == null) {
+        const web3authProvider = await web3auth.connectTo("openlogin", {
+          loginProvider: "google",
+        });
+        setProvider(web3authProvider);
+        const provider = new BrowserProvider(web3authProvider);
+        const signer = provider.getSigner();
+        setSigner(signer);
+        const address = await signer.getAddress();
+        addWeb3Wallet(address);
+      } else {
+        const pro = new BrowserProvider(provider);
+        const signer = await pro.getSigner();
+        setSigner(signer);
+        const address = await signer.getAddress();
+        addWeb3Wallet(address);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const disconnect = async () => {
-    try {
-      console.log("disconnect");
-      await web3auth.logout();
-      setProvider(null);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <div>
-      {provider == null ? (
-        <button
-          className="w-full bg-white border border-gray-600 rounded-md px-3 py-2 mt-2 text-md text-gray-800 flex items-center gap-2 justify-center"
-          onClick={connect}
-        >
-          <img src="/glogo.png" className="h-5"></img>Continue with Google
-        </button>
-      ) : (
-        <button
-          className="w-full bg-white border border-gray-600 rounded-md px-3 py-2 mt-2 text-sm text-gray-800"
-          onClick={disconnect}
-        >
-          disconnect
-        </button>
-      )}
+      <button
+        className="w-full bg-white border border-gray-600 rounded-md px-3 py-2 mt-2 text-md text-gray-800 flex items-center gap-2 justify-center"
+        onClick={connect}
+      >
+        <img src="/glogo.png" className="h-5"></img>Continue with Google
+      </button>
     </div>
   );
 };
