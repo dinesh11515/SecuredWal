@@ -17,7 +17,7 @@ const { chains, publicClient } = configureChains(
 
 const { connectors } = getDefaultWallets({
   appName: "FanSig",
-  projectId: "YOUR_PROJECT_ID",
+  projectId: "f1dd521b87109c82133a11126555675a",
   chains,
 });
 
