@@ -93,7 +93,7 @@ export default function index() {
       setStarted(false);
     } catch (err) {
       console.log(err);
-      toast.error("Transaction failed");
+      // toast.error("Transaction failed");
       setStarted(false);
     }
   };
@@ -119,7 +119,7 @@ export default function index() {
   }
 
   function openExplorer() {
-    window.open("https://testnet.ftmscan.com/address/" + wallet);
+    window.open("https://ftmscan.com/address/" + wallet);
   }
 
   useState(() => {

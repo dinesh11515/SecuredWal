@@ -14,8 +14,8 @@ export const Web3Auth = ({ addWeb3Wallet, setSigner }) => {
           clientId,
           chainConfig: {
             chainNamespace: "eip155",
-            chainId: "0xfa2",
-            rpcTarget: "https://rpc.testnet.fantom.network",
+            chainId: "0xfa",
+            rpcTarget: "https://rpc.fantom.network",
           },
           web3AuthNetwork: "mainnet",
         });

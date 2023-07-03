@@ -13,6 +13,14 @@ module.exports = {
       },
     },
   },
-
-  networks: {},
+  networks: {
+    ftm: {
+      url: "https://fantom.blockpi.network/v1/rpc/public",
+    },
+  },
+  etherscan: {
+    apiKey: {
+      opera: process.env.FTM,
+    },
+  },
 };
