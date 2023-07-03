@@ -8,12 +8,9 @@ import {
   darkTheme,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { fantomTestnet } from "wagmi/chains";
+import { fantom } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
-const { chains, publicClient } = configureChains(
-  [fantomTestnet],
-  [publicProvider()]
-);
+const { chains, publicClient } = configureChains([fantom], [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
   appName: "SecuredWal",

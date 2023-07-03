@@ -17,7 +17,7 @@ export const Web3Auth = ({ addWeb3Wallet, setSigner }) => {
             chainId: "0xfa2",
             rpcTarget: "https://rpc.testnet.fantom.network",
           },
-          web3AuthNetwork: "testnet",
+          web3AuthNetwork: "mainnet",
         });
 
         const openloginAdapter = new OpenloginAdapter({
