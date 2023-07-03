@@ -53,7 +53,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className=" rounded-xl mt-3 py-6 px-7 bg-gray-900 m-2 font-['DM_Sans'] xl:mx-28 xl:mt-6 xl:py-40  xl:px-20">
+      <div className=" rounded-xl mt-3 py-6 px-7 bg-gray-900 m-2 font-['DM_Sans'] xl:mx-20 xl:mt-6 xl:py-40  xl:px-20">
         <div className="text-5xl font-['DM_Sans']	tracking-wide xl:flex xl:gap-4">
           <p>Welcome to</p>
           <p>SecuredWal</p>

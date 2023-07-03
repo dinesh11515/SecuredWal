@@ -48,7 +48,7 @@ export default function Create() {
 
   const db = new Polybase({
     defaultNamespace:
-      "pk/0xb5aa6ea50c67df66fc493ab2aef0d9fe423741fa7a4d1eee340e4bb806c2c1be2ae0ce9d519c07da481ad39fa22a96a0811c798db6fae6aa762889c208fee378/SecuredWal",
+      "pk/0xb5aa6ea50c67df66fc493ab2aef0d9fe423741fa7a4d1eee340e4bb806c2c1be2ae0ce9d519c07da481ad39fa22a96a0811c798db6fae6aa762889c208fee378/FanSig",
   });
   const collectionReference = db.collection("SmartWallet");
 
@@ -105,7 +105,7 @@ export default function Create() {
   };
 
   return (
-    <div class="flex flex-col gap-2 font-['DM_Sans'] px-2 mt-2 xl:mx-28 xl:mt-10">
+    <div class="flex flex-col gap-2 font-['DM_Sans'] px-2 mt-2 xl:mx-20 xl:mt-10">
       <div class="flex">
         <div className="mt-2">
           <h1 className="text-2xl tracking-wide ml-2 text-black font-semibold">

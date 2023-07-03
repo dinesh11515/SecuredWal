@@ -140,7 +140,7 @@ export default function index() {
           <img src="/loading.gif" className="h-8 rounded-full"></img>
         </div>
       ) : (
-        <div className="font-['DM_Sans'] mx-3 xl:mx-32 xl:mt-5">
+        <div className="font-['DM_Sans'] mx-3 xl:mx-20 xl:mt-5">
           <div className="">
             <div className="xl:flex xl:w-full xl:gap-8">
               <div className="w-full xl:w-1/2">
@@ -254,7 +254,7 @@ export default function index() {
                 <div className="flex flex-col gap-2 bg-gray-900 p-2 mt-2 rounded-xl ">
                   <div className="flex flex-col gap-2 ">
                     <div>
-                      {transactions || transactions.length > 0 ? (
+                      {transactions ? (
                         transactions.map((tx, index) => {
                           console.log(tx);
                           if (
@@ -314,7 +314,7 @@ export default function index() {
                   <div className="flex flex-col gap-2 ">
                     {signer ? (
                       <div>
-                        {transactions.length > 0 ? (
+                        {transactions ? (
                           transactions.map((tx, index) => {
                             if (
                               tx.numConfirmations != data.requiredConfirmations
