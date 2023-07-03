@@ -1,6 +1,6 @@
 import { Web3AuthNoModal } from "@web3auth/no-modal";
 import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
-import { ethers } from "ethers";
+import { BrowserProvider } from "ethers";
 import { useState, useEffect } from "react";
 export const Web3Auth = ({ addWeb3Wallet, setSigner }) => {
   const [web3auth, setWeb3auth] = useState(null);
@@ -40,8 +40,8 @@ export const Web3Auth = ({ addWeb3Wallet, setSigner }) => {
         console.log(web3auth.provider);
         if (web3auth.provider) {
           setProvider(web3auth.provider);
-          const provider = new ethers.providers.Web3Provider(web3auth.provider);
-          const signer = provider.getSigner();
+          const provider = new BrowserProvider(web3auth.provider);
+          const signer = await provider.getSigner();
           setSigner(signer);
           const address = await signer.getAddress();
           addWeb3Wallet(address);
@@ -60,7 +60,7 @@ export const Web3Auth = ({ addWeb3Wallet, setSigner }) => {
         loginProvider: "google",
       });
       setProvider(web3authProvider);
-      const provider = new ethers.providers.Web3Provider(web3authProvider);
+      const provider = new BrowserProvider(web3authProvider);
       const signer = provider.getSigner();
       setSigner(signer);
       const address = await signer.getAddress();
